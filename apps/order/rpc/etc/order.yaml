@@ -1,0 +1,31 @@
+Name: order.rpc
+ListenOn: 127.0.0.1:9003
+Mode: dev
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: order.rpc
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+ProductRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: product.rpc
+
+Telemetry:
+  Endpoint: http://127.0.0.1:14268/api/traces
+DataSource: root:123456@tcp(localhost:43306)/orders?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai # 数据库连接地址 自建最好修改下密码
+CacheRedis:
+  - Host: localhost:46379
+    Pass: "123456"
+    Type: node
+BizRedis:
+  Host: localhost:46379
+  Pass: "123456"
+  Type: node
